@@ -1,5 +1,7 @@
 .classpath
 .project
 .settings/
-WebContent/
 target/
+WebContent/META-INF/
+WebContent/styles/
+WebContent/target/

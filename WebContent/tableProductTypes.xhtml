@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:body>
+  <ui:composition template="./tableTemplate.xhtml">
+    <ui:define name="title">Products</ui:define>
+    <ui:define name="header">
+      <h2>Product types:</h2>
+    </ui:define>
+    <ui:define name="table">
+      <h:form id="productTypesTable">
+        <h:dataTable value="#{productTypeService.getAll()}"
+          var="productType"
+          styleClass="table table-bordered table-hover">
+          <h:column>
+            <f:facet name="header">
+             Name
+            </f:facet>
+            #{productType.name}
+          </h:column>
+
+          <h:column>
+            <h:commandButton value="edit"
+              action="#{productEditService.startEditProductType(productType)}" />
+            <h:commandButton value="delete"
+              action="#{productTypeService.delete(productType.getId())}">
+              <f:ajax render="productsTable" />
+            </h:commandButton>
+          </h:column>
+        </h:dataTable>
+
+
+        <h:button value="Add productType" outcome="addProductType"
+          styleClass="btn btn-primary" />
+
+      </h:form>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
