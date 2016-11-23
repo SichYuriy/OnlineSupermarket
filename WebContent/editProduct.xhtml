@@ -6,36 +6,38 @@
 
 <h:body>
   <ui:composition template="./formTemplate.xhtml">
-    <ui:define name="title">Add product</ui:define>
+    <ui:define name="title">Edit product</ui:define>
     <ui:define name="header">
-      <h2>Add Product:</h2>
+      <h2>Edit Product:</h2>
     </ui:define>
     <ui:define name="form">
       <h:form>
         <div class="form-group">
           <h:outputLabel value="Name:" for="name" />
-          <h:inputText name="name" value="#{productDTO.name}"
+          <h:inputText name="name"
+            value="#{productEditService.productDTO.name}"
             required="true" styleClass="form-control" id="name" />
         </div>
         <div class="form-group">
           <h:outputLabel value="ProductType:" for="productType" />
           <h:selectOneMenu name="productType" required="true"
-            value="#{productDTO.productTypeId}" styleClass="form-control"
-            id="productType">
+            value="#{productEditService.productDTO.productTypeId}"
+            styleClass="form-control" id="productType">
             <f:selectItems value="#{productTypeService.getAll()}"
               var="type" itemLabel="#{type.name}" itemValue="#{type.id}" />
           </h:selectOneMenu>
         </div>
         <div class="form-group">
           <h:outputLabel value="Price:" for="price" />
-          <h:inputText name="price" value="#{productDTO.price}"
+          <h:inputText name="price"
+            value="#{productEditService.productDTO.price}"
             required="true" styleClass="form-control" id="price" />
         </div>
         <div class="form-group">
           <h:outputLabel value="PriceType:" for="priceType" />
           <h:selectOneMenu name="priceType" required="true"
-            value="#{productDTO.priceType}" styleClass="form-control"
-            id="priceType">
+            value="#{productEditService.productDTO.priceType}"
+            styleClass="form-control" id="priceType">
             <f:selectItem itemLabel="individualy"
               itemValue="#{productDTO.ind}" />
             <f:selectItem itemLabel="kg" itemValue="#{productDTO.kg}" />
@@ -44,11 +46,11 @@
         <div class="form-group">
           <h:outputLabel value="Description:" for="description" />
           <h:inputText name="description"
-            value="#{productDTO.description}" required="true"
-            styleClass="form-control" id="description" />
+            value="#{productEditService.productDTO.description}"
+            required="true" styleClass="form-control" id="description" />
         </div>
         <h:commandButton type="submit" value="Submit"
-          action="#{productService.create(productDTO)}"
+          action="#{productService.update(productEditService.productDTO)}"
           styleClass="btn btn-success" />
       </h:form>
     </ui:define>

@@ -23,6 +23,9 @@ public class ProductTypeDAO extends AbstractDAO<ProductType> {
     @Override
     public void delete(long id) {
         ProductType type = entityManager.find(ProductType.class, id);
+        if (type.getProducts().size() > 0) {
+            return;
+        }
         entityManager.remove(type);
     }
 

@@ -6,20 +6,20 @@
 
 <h:body>
   <ui:composition template="./formTemplate.xhtml">
-    <ui:define name="title">Add productType</ui:define>
+    <ui:define name="title">Edit productType</ui:define>
     <ui:define name="header">
-      <h2>Add ProductType:</h2>
+      <h2>Edit ProductType:</h2>
     </ui:define>
     <ui:define name="form">
       <h:form>
         <div class="form-group">
           <h:outputLabel value="Name:" for="name" />
-          <h:inputText name="name" value="#{productTypeDTO.name}"
+          <h:inputText name="name" value="#{productEditService.productTypeDTO.name}"
             required="true" styleClass="form-control" id="name" />
         </div>
         
         <h:commandButton type="submit" value="Submit"
-          action="#{productTypeService.create(productTypeDTO)}"
+          action="#{productTypeService.update(productEditService.productTypeDTO)}"
           styleClass="btn btn-success" />
       </h:form>
     </ui:define>

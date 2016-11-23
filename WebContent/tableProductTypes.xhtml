@@ -24,10 +24,12 @@
 
           <h:column>
             <h:commandButton value="edit"
-              action="#{productEditService.startEditProductType(productType)}" />
+              action="#{productEditService.startEditProductType(productType)}" 
+              styleClass="btn btn-success"/>
             <h:commandButton value="delete"
-              action="#{productTypeService.delete(productType.getId())}">
-              <f:ajax render="productsTable" />
+              action="#{productTypeService.delete(productType.getId())}"
+              styleClass="btn btn-danger">
+              <f:ajax render="productTypesTable" />
             </h:commandButton>
           </h:column>
         </h:dataTable>

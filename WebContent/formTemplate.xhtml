@@ -11,7 +11,27 @@
 </h:head>
 
 <h:body>
-
+  
+  <div class="row">
+      <div class="col-md-4 col-md-offset-8">
+        <h:form>
+          <h:outputLabel value="#{userInformation.getName()}"
+            rendered="#{!(userInformation.guest)}" />
+          <h:button value="Sigin in"
+            outcome="welcome?faces-redirect=true"
+            styleClass="btn btn-primary"
+            rendered="#{userInformation.guest}" />
+          <h:button value="Sigin up"
+            outcome="registration?faces-redirect=true"
+            styleClass="btn btn-success"
+            rendered="#{userInformation.guest}" />
+          <h:commandButton value="logOut"
+            action="#{userInformation.logOut()}"
+            styleClass="btn btn-success"
+            rendered="#{!(userInformation.guest)}" />
+        </h:form>
+      </div>
+    </div>
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">

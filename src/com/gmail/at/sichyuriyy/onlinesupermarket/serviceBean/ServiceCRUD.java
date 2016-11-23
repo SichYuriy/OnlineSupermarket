@@ -1,4 +1,4 @@
-package com.gmail.at.sichyuriyy.onlinesupermarket.serviceBean;
+package com.gmail.at.sichyuriyy.onlinesupermarket.servicebean;
 
 import java.util.List;
 

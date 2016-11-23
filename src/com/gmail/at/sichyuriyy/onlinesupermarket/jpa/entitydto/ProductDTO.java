@@ -7,7 +7,7 @@ import com.gmail.at.sichyuriyy.onlinesupermarket.jpa.entity.Product;
 import com.gmail.at.sichyuriyy.onlinesupermarket.jpa.entity.Product.PriceType;
 import com.gmail.at.sichyuriyy.onlinesupermarket.jpa.entity.ProductType;
 
-@ManagedBean(name="productDTO")
+@ManagedBean(name = "productDTO")
 @RequestScoped
 public class ProductDTO {
 
@@ -19,7 +19,7 @@ public class ProductDTO {
     private Product.PriceType priceType;
     private ProductType productType;
     private long productTypeId;
-    
+
     private Product.PriceType ind = Product.PriceType.INDIVIDUALY;
     private Product.PriceType kg = Product.PriceType.KILOGRAM;
 
@@ -53,6 +53,18 @@ public class ProductDTO {
     public ProductDTO(Product product) {
         this(product.getId(), product.getName(), product.getPrice(), product.getDescription(), product.getPriceType(),
                 product.getProductType());
+    }
+
+    public String getPriceTypeLabel(PriceType priceType) {
+
+        switch (priceType) {
+        case INDIVIDUALY:
+            return "/1 item";
+        case KILOGRAM:
+            return "/1 kg";
+        default:
+            return "/1 item";
+        }
     }
 
     public long getId() {

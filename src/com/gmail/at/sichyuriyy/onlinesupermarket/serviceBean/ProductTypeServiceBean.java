@@ -1,4 +1,4 @@
-package com.gmail.at.sichyuriyy.onlinesupermarket.serviceBean;
+package com.gmail.at.sichyuriyy.onlinesupermarket.servicebean;
 
 import java.util.List;
 
@@ -52,7 +52,10 @@ public class ProductTypeServiceBean implements ServiceCRUD<ProductType> {
         
     }
 
-    public String update(ProductTypeDTO productTypeDTO) {
+    public String update(ProductTypeDTO productTypeDTO) throws Exception {
+        if (productTypeDTO.getId() == null) {
+            throw new Exception("oops!");
+        }
         ProductType productType = productTypeDAO.getById(productTypeDTO.getId());
         productType.setName(productTypeDTO.getName());
         update(productType);

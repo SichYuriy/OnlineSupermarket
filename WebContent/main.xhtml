@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:body>
+  
+  <ui:composition template="./mainTemplate.xhtml">
+    <ui:define name="title">OnlineSupermarket</ui:define>
+    <ui:define name="header">
+      <div class="col-md-4 col-md-offset-4">
+        <h2>OnlineSupermarket</h2>
+      </div>
+    </ui:define>
+    <ui:define name="filtration">
+      <h2>Filters</h2>
+      <br />
+      <br />
+      <h:form id="form">
+        <h:dataTable value="#{productFilter.productTypeItems}"
+          var="item" styleClass="table table-bordered table-hover">
+          <h:column>
+            <f:facet name="header">
+              ProductType
+            </f:facet>
+            <h:commandLink value="#{item.name}"
+              action="#{productFilter.changeProductType(item)}">
+              <f:ajax render="contentForm" />
+            </h:commandLink>
+          </h:column>
+        </h:dataTable>
+        <br />
+        <div class="form-group">
+          <h:outputLabel value="Name filter:" for="productName" />
+          <h:inputText value="#{productFilter.productName}"
+            id="productName" styleClass="form-control">
+            <f:ajax render="contentForm" execute="productName"
+              event="valueChange" />
+          </h:inputText>
+        </div>
+      </h:form>
+
+    </ui:define>
+    <ui:define name="content">
+      <h:form id="contentForm">
+        <h:outputLabel value="#{productFilter.productTypeLabel}" />
+        <h:dataTable value="#{productFilter.getProducts()}"
+          var="product" styleClass="table table-bordered table-hover">
+          <h:column>
+            <f:facet name="header">
+             Name
+            </f:facet>
+            #{product.name}
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+             Description
+            </f:facet>
+            #{product.description}
+          </h:column>
+          <h:column>
+            <f:facet name="header">
+             Price 
+            </f:facet>
+            #{product.price} (#{productDTO.getPriceTypeLabel(product.priceType)})
+          </h:column>
+          <h:column>
+            <h:commandButton value="to Cart"
+              action="#{shoppingCart.startAddProduct(product, 1)}"
+              styleClass="btn btn-primary">
+              <f:ajax render="contentForm" />
+            </h:commandButton>
+            <h:inputText value="#{shoppingCart.countToAdd}"
+              required="true" styleClass="form-control"
+              style="width:60px"
+              rendered="#{shoppingCart.isProductToAddId(product.id)}"
+              id="countToAdd">
+              <f:ajax render="contentForm" execute="countToAdd"
+                event="valueChange"
+                listener="#{shoppingCart.validateCountToAdd()}" />
+            </h:inputText>
+            <h:commandButton value="Add"
+              action="#{shoppingCart.confirmAddProduct()}"
+              styleClass="btn btn-success"
+              rendered="#{shoppingCart.isProductToAddId(product.id)}">
+
+              <f:ajax render="contentForm" />
+            </h:commandButton>
+            <h:commandButton value="X"
+              action="#{shoppingCart.cancelAddProduct()}"
+              styleClass="btn btn-danger"
+              rendered="#{shoppingCart.isProductToAddId(product.id)}">
+              <f:ajax render="contentForm" />
+            </h:commandButton>
+          </h:column>
+        </h:dataTable>
+      </h:form>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

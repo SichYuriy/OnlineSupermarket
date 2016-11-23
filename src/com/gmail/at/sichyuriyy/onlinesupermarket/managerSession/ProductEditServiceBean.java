@@ -1,4 +1,4 @@
-package com.gmail.at.sichyuriyy.onlinesupermarket.managerSession;
+package com.gmail.at.sichyuriyy.onlinesupermarket.managersession;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
