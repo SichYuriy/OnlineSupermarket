@@ -18,7 +18,8 @@
       <h2>Fail!</h2>
       <br />
       <h4>Login or password is wrong!</h4>
-      <h:button outcome="login?faces-redirect=true" value="back"
+       #{authentication.logFail()}
+      <h:button outcome="welcome?faces-redirect=true" value="back"
         styleClass="btn btn-primary" />
     </ui:define>
   </ui:composition>

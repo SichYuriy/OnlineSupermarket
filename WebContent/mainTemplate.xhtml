@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
   <title><ui:insert name="title">Default title</ui:insert></title>
@@ -57,8 +58,8 @@
             rendered="#{userInformation.isInRole('manager')}" />
           <h:button value="userManagement"
             outcome="userManagement?faces-redirect=true"
-            styleClass="btn btn-default" 
-            rendered="#{userInformation.isInRole('admin')}"/>
+            styleClass="btn btn-default"
+            rendered="#{userInformation.isInRole('admin')}" />
         </div>
       </ui:insert>
     </div>
@@ -75,8 +76,14 @@
     </div>
     <div class="row">
       <ui:insert name="footer">
+        <h:form>
+          <h:commandButton value="sendMessage"
+            action="#{messageService.notify('ky-ky')}">
+            <f:ajax />
+          </h:commandButton>
+          <h:button value="receiveMessage" outcome="receiveMessage?faces-redirect=true" />
+        </h:form>
 
-        
       </ui:insert>
     </div>
   </div>

@@ -6,21 +6,18 @@
 
 <h:body>
   <ui:composition template="./errorTemplate.xhtml">
-    <ui:define name="title">Welcome</ui:define>
+    <ui:define name="title">OnlineSupermarket</ui:define>
     <ui:define name="header">
       <div class="col-md-4 col-md-offset-4">
         <h2>OnlineSupermarket</h2>
       </div>
     </ui:define>
-
+    
     <ui:define name="content">
-      <br />
-      <h2>Welcome, #{userInformation.getName()}</h2>
-      #{authentication.logSuccess()}
-     
+      #{messageService.receive()}
       <br />
       
-      <h:button outcome="main?faces-redirect=true" value="next"
+      <h:button outcome="main?faces-redirect=true" value="back"
         styleClass="btn btn-primary" />
     </ui:define>
   </ui:composition>
